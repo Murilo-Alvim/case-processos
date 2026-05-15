@@ -16,9 +16,13 @@ export function buildApp() {
     .map((s) => s.trim())
     .filter(Boolean);
 
+  // "*" ou vazio → libera todas as origens (útil em deploy inicial).
+  // Caso contrário, apenas a lista informada é aceita.
+  const allowAll = allowed.length === 0 || allowed.includes("*");
+
   app.use(
     cors({
-      origin: allowed.length === 0 ? true : allowed,
+      origin: allowAll ? true : allowed,
       credentials: false,
     })
   );
