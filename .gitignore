@@ -1,0 +1,14 @@
+# Claude Code local state
+.claude/
+
+# Node
+node_modules/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
