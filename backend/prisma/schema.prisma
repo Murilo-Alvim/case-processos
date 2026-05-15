@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Área (departamento) da empresa
+model Area {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  description String?
+  color       String    @default("#6366F1")
+  icon        String    @default("Building2")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  processes Process[]
+}
+
+// Processo (ou subprocesso) — auto-referencial para hierarquia ilimitada
+model Process {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  type        String   @default("manual") // "system" | "manual" | "hybrid"
+  status      String   @default("active") // "active" | "draft" | "deprecated"
+  priority    String   @default("medium") // "low" | "medium" | "high" | "critical"
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  areaId String
+  area   Area   @relation(fields: [areaId], references: [id], onDelete: Cascade)
+
+  parentId String?
+  parent   Process?  @relation("ProcessHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children Process[] @relation("ProcessHierarchy")
+
+  tools         ProcessTool[]
+  responsibles  ProcessResponsible[]
+  documents     Document[]
+}
+
+// Ferramentas/Sistemas usados nos processos
+model Tool {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  type        String   @default("software") // "software" | "platform" | "service"
+  url         String?
+  description String?
+  createdAt   DateTime @default(now())
+
+  processes ProcessTool[]
+}
+
+model ProcessTool {
+  processId String
+  toolId    String
+
+  process Process @relation(fields: [processId], references: [id], onDelete: Cascade)
+  tool    Tool    @relation(fields: [toolId], references: [id], onDelete: Cascade)
+
+  @@id([processId, toolId])
+}
+
+// Pessoas / Equipes responsáveis
+model Responsible {
+  id        String   @id @default(uuid())
+  name      String
+  email     String?
+  role      String?  // cargo / função
+  team      String?
+  createdAt DateTime @default(now())
+
+  processes ProcessResponsible[]
+}
+
+model ProcessResponsible {
+  processId     String
+  responsibleId String
+
+  process     Process     @relation(fields: [processId], references: [id], onDelete: Cascade)
+  responsible Responsible @relation(fields: [responsibleId], references: [id], onDelete: Cascade)
+
+  @@id([processId, responsibleId])
+}
+
+// Documentação associada ao processo
+model Document {
+  id          String   @id @default(uuid())
+  title       String
+  url         String?
+  type        String   @default("link") // "link" | "file" | "wiki" | "video"
+  description String?
+  createdAt   DateTime @default(now())
+
+  processId String
+  process   Process @relation(fields: [processId], references: [id], onDelete: Cascade)
+}

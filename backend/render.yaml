@@ -1,0 +1,19 @@
+# Render Blueprint - https://render.com/docs/blueprint-spec
+# Conecte o repositório no Render → "New Blueprint" e ele lê este arquivo.
+services:
+  - type: web
+    name: processmap-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false        # cole manualmente no painel (vem do Neon)
+      - key: ALLOWED_ORIGINS
+        sync: false        # cole a URL do front no Vercel
