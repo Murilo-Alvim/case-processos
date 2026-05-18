@@ -68,9 +68,6 @@ export function Layout() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="font-bold text-ink leading-tight">ProcessMap</div>
-              <div className="text-[10px] uppercase tracking-widest text-muted">
-                Stage Consulting
-              </div>
             </div>
             <button
               className="lg:hidden text-muted hover:text-ink p-1.5 rounded-lg hover:bg-card"
@@ -130,7 +127,7 @@ export function Layout() {
           </div>
           <div className="ml-auto flex items-center gap-3 shrink-0">
             <span className="text-xs text-muted hidden md:inline">
-              v1.0 • Stage Consulting
+              v1.0
             </span>
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-400 to-brand-700 grid place-items-center text-xs font-bold text-white">
               MA
