@@ -40,7 +40,7 @@ export function AreasPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto">
+    <div className="p-4 sm:p-6 max-w-[1400px] mx-auto">
       <PageHeader
         icon={<Building2 className="w-5 h-5" />}
         title="Áreas"
@@ -62,7 +62,7 @@ export function AreasPage() {
         }
       />
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {isLoading &&
           Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="card p-5 h-36 animate-pulse opacity-50" />
@@ -101,7 +101,7 @@ export function AreasPage() {
                   </span>{" "}
                   processo(s)
                 </span>
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
+                <div className="flex items-center gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition">
                   <Link
                     to={`/mapa/${area.id}`}
                     className="p-1.5 rounded-md text-muted hover:text-brand-300 hover:bg-card"

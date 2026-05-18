@@ -19,7 +19,7 @@ export function ResponsiblesPage() {
   const remove = useDeleteResponsible();
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto">
+    <div className="p-4 sm:p-6 max-w-[1400px] mx-auto">
       <PageHeader
         icon={<Users className="w-5 h-5" />}
         title="Responsáveis"
@@ -31,7 +31,7 @@ export function ResponsiblesPage() {
         }
       />
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {isLoading &&
           Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="card p-5 h-32 animate-pulse opacity-50" />
@@ -70,7 +70,7 @@ export function ResponsiblesPage() {
                 </span>{" "}
                 processo(s)
               </span>
-              <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
+              <div className="flex items-center gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition">
                 <button
                   onClick={() => setEditing(r)}
                   className="p-1.5 rounded-md text-muted hover:text-ink hover:bg-card"
@@ -176,7 +176,7 @@ function ResponsibleForm({
     >
       <form
         id="resp-form"
-        className="grid grid-cols-2 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit({
@@ -187,7 +187,7 @@ function ResponsibleForm({
           });
         }}
       >
-        <div className="col-span-2">
+        <div className="sm:col-span-2">
           <label className="label">Nome / Equipe *</label>
           <input
             className="input"
@@ -212,7 +212,7 @@ function ResponsibleForm({
             onChange={(e) => setForm({ ...form, team: e.target.value })}
           />
         </div>
-        <div className="col-span-2">
+        <div className="sm:col-span-2">
           <label className="label">E-mail</label>
           <input
             className="input"

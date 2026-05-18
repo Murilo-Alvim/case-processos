@@ -38,7 +38,7 @@ export function ProcessSidePanel({
   const Pr = PRIORITY_META[process.priority];
 
   return (
-    <aside className="w-[380px] shrink-0 border-l border-line bg-panel/70 backdrop-blur-xl flex flex-col animate-fade-in">
+    <aside className="absolute inset-0 z-20 lg:relative lg:inset-auto w-full lg:w-[380px] shrink-0 border-l border-line bg-panel lg:bg-panel/70 backdrop-blur-xl flex flex-col animate-fade-in">
       <div className="px-5 py-4 border-b border-line">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">

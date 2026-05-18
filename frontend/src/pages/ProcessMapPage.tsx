@@ -127,7 +127,7 @@ function ProcessMapInner() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-6 pb-3">
+      <div className="p-4 sm:p-6 pb-3">
         <PageHeader
           icon={<Network className="w-5 h-5" />}
           title="Mapa de Processos"
@@ -187,8 +187,8 @@ function ProcessMapInner() {
         </div>
       </div>
 
-      <div className="flex-1 px-6 pb-6 overflow-hidden">
-        <div className="card h-full overflow-hidden flex">
+      <div className="flex-1 px-4 sm:px-6 pb-4 sm:pb-6 overflow-hidden">
+        <div className="card h-full overflow-hidden flex relative">
           <div className="flex-1 relative">
             {isLoading && (
               <div className="absolute inset-0 grid place-items-center text-muted text-sm">

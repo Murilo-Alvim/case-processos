@@ -18,7 +18,7 @@ export function DashboardPage() {
   const { data: stats, isLoading } = useStats();
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto">
+    <div className="p-4 sm:p-6 max-w-[1400px] mx-auto">
       <PageHeader
         icon={<LayoutDashboard className="w-5 h-5" />}
         title="Visão Geral"

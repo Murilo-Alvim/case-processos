@@ -26,7 +26,7 @@ export function ToolsPage() {
   const remove = useDeleteTool();
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto">
+    <div className="p-4 sm:p-6 max-w-[1400px] mx-auto">
       <PageHeader
         icon={<Wrench className="w-5 h-5" />}
         title="Ferramentas e Sistemas"
@@ -42,7 +42,8 @@ export function ToolsPage() {
       />
 
       <div className="card overflow-hidden">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full text-sm min-w-[640px]">
           <thead className="text-left bg-panel/50 text-muted">
             <tr>
               <th className="px-5 py-3 font-medium">Nome</th>
@@ -104,7 +105,7 @@ export function ToolsPage() {
                   {t._count?.processes ?? 0} processo(s)
                 </td>
                 <td className="px-5 py-3">
-                  <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
+                  <div className="flex items-center gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition">
                     <button
                       className="p-1.5 rounded-md text-muted hover:text-ink hover:bg-card"
                       onClick={() => setEditing(t)}
@@ -123,6 +124,7 @@ export function ToolsPage() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       <ToolForm
